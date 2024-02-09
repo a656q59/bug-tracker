@@ -1,18 +1,16 @@
+import { Table } from "@radix-ui/themes";
 import React from "react";
-import { Badge, Button, Table } from "@radix-ui/themes";
-import Link from "next/link";
-import prisma from "@/prisma/client";
 import BugStatusBadge from "../components/BugStatusBadge";
-import delay from "delay";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import BugsAction from "./BugsAction";
 
-const IssuesPage = async () => {
-  const bugs = await prisma.bug.findMany();
-  await delay(2000);
-
+const loadingBugsPage = () => {
+  const bugs = [1, 2, 3, 4, 5];
   return (
     <div>
       <BugsAction />
+
       <Table.Root variant="surface">
         <Table.Header>
           <Table.Row>
@@ -27,18 +25,18 @@ const IssuesPage = async () => {
         </Table.Header>
         <Table.Body>
           {bugs?.map((bug) => (
-            <Table.Row key={bug.id}>
+            <Table.Row key={bug}>
               <Table.Cell>
-                {bug.title}
+                <Skeleton />
                 <div className="md:hidden block">
-                  <BugStatusBadge status={bug.status} />
+                  <Skeleton />
                 </div>
               </Table.Cell>
               <Table.Cell className="hidden md:table-cell">
-                <BugStatusBadge status={bug.status} />
+                <Skeleton />
               </Table.Cell>
               <Table.Cell className="hidden md:table-cell">
-                {bug.createdAt.toDateString()}
+                <Skeleton />
               </Table.Cell>
             </Table.Row>
           ))}
@@ -48,4 +46,4 @@ const IssuesPage = async () => {
   );
 };
 
-export default IssuesPage;
+export default loadingBugsPage;
