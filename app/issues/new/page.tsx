@@ -10,7 +10,7 @@ import {
 } from "@radix-ui/themes";
 import axios from "axios";
 import { Controller, useForm } from "react-hook-form";
-import SimpleMDE from "react-simplemde-editor";
+import dynamic from "next/dynamic";
 import "easymde/dist/easymde.min.css";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -19,11 +19,16 @@ import { createBugSchema } from "@/app/validationSchema";
 import { z } from "zod";
 import ErrorMessage from "@/app/components/ErrorMessage";
 import Spinner from "@/app/components/Spinner";
+import delay from "delay";
 
+const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
+  ssr: false,
+});
 type IssueForm = z.infer<typeof createBugSchema>;
 
 const newBugsPage = () => {
   const router = useRouter();
+
   const {
     register,
     control,
