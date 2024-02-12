@@ -53,6 +53,7 @@ const IssueForm = ({ bug }: Props) => {
         // console.log("bug" + bug + "data" + data);
       } else await axios.post("/api/issues", data);
       router.push("/issues");
+      router.refresh();
     } catch (error) {
       setSubmitting(false);
 
