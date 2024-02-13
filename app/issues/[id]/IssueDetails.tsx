@@ -7,11 +7,11 @@ const IssueDetails = ({ bug }: { bug: Bug }) => {
   return (
     <>
       <Heading>{bug.title}</Heading>
-      <Flex className="space-x-3 " my="2">
+      <Flex className="space-x-3  " my="2">
         <BugStatusBadge status={bug.status} />
         <Text>{bug.createdAt.toDateString()}</Text>
       </Flex>
-      <Card className="prose" mt="4">
+      <Card className="prose max-w-full" mt="5">
         <ReactMarkdown>{bug.description}</ReactMarkdown>
       </Card>
     </>
