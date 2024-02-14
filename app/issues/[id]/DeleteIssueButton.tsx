@@ -2,6 +2,8 @@
 // import { AlertDialogRoot, Button, Flex } from ;
 import { Button, Flex } from "@radix-ui/themes";
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 // import {
 //   AlertDialogTrigger,
@@ -13,10 +15,21 @@ import * as AlertDialog from "@radix-ui/react-alert-dialog";
 // } from "@radix-ui/react-alert-dialog";
 
 const DeleteIssueButton = ({ bugId }: { bugId: number }) => {
+  const router = useRouter();
+
   return (
     <AlertDialog.Root>
       <AlertDialog.Trigger asChild>
-        <Button color="red">Delete Issue</Button>
+        <Button
+          color="red"
+          onClick={async () => {
+            await axios.delete("/api/issues/" + bugId);
+            router.push("/issues");
+            router.refresh();
+          }}
+        >
+          Delete Issue
+        </Button>
       </AlertDialog.Trigger>
       <AlertDialog.Portal>
         <AlertDialog.Content>
@@ -36,7 +49,7 @@ const DeleteIssueButton = ({ bugId }: { bugId: number }) => {
 
               <AlertDialog.Action asChild>
                 <Button variant="solid" color="red">
-                  Revoke access
+                  Delete
                 </Button>
               </AlertDialog.Action>
             </Flex>
