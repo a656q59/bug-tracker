@@ -5,6 +5,7 @@ import * as AlertDialog from "@radix-ui/react-alert-dialog";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { Spinner } from "@/app/components";
 
 // import {
 //   AlertDialogTrigger,
@@ -18,13 +19,16 @@ import { useState } from "react";
 const DeleteIssueButton = ({ bugId }: { bugId: number }) => {
   const router = useRouter();
   const [error, setError] = useState(false);
+  const [isDeleting, setDeleting] = useState(false);
 
   const deleteIssue = async () => {
     try {
+      setDeleting(true);
       await axios.delete("/api/issues/" + bugId);
       router.push("/issues");
       router.refresh();
     } catch (error) {
+      setDeleting(false);
       setError(true);
     }
   };
@@ -33,8 +37,9 @@ const DeleteIssueButton = ({ bugId }: { bugId: number }) => {
     <>
       <AlertDialog.Root>
         <AlertDialog.Trigger asChild>
-          <Button color="red" onClick={deleteIssue}>
+          <Button color="red" onClick={deleteIssue} disabled={isDeleting}>
             Delete Issue
+            {isDeleting && <Spinner />}
           </Button>
         </AlertDialog.Trigger>
         <AlertDialog.Portal>
