@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { BsBugFill } from "react-icons/bs";
 import classNames from "classnames";
 import { useSession } from "next-auth/react";
-import { Box } from "@radix-ui/themes";
+import { Box, Container, Flex } from "@radix-ui/themes";
 
 const Navbar = () => {
   const { status, data: session } = useSession();
@@ -16,36 +16,41 @@ const Navbar = () => {
     { label: "Issues", href: "/issues" },
   ];
   return (
-    <nav className="flex space-x-6 border-b mb-5 px-5 h-14 items-center">
-      <Link href="/">
-        <BsBugFill />
-      </Link>
-      <ul className="flex space-x-6">
-        {links.map((link) => (
-          <li key={link.href}>
-            <Link
-              className={classNames({
-                "text-zinc-900": link.href === currentPath,
-                "text-zinc-500": link.href !== currentPath,
-                "hover:text-zinc-900 transition-colors": true,
-              })}
-              href={link.href}
-            >
-              {link.label}
+    <nav className=" border-b mb-5 px-5 py-3">
+      <Container>
+        <Flex justify="between">
+          <Flex align="center" gap="3">
+            <Link href="/">
+              <BsBugFill />
             </Link>
-          </li>
-        ))}
-      </ul>
+            <ul className="flex space-x-6">
+              {links.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    className={classNames({
+                      "text-zinc-900": link.href === currentPath,
+                      "text-zinc-500": link.href !== currentPath,
+                      "hover:text-zinc-900 transition-colors": true,
+                    })}
+                    href={link.href}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </Flex>
+          <Box>
+            {status === "authenticated" && (
+              <Link href="/api/auth/signout"> Log Out</Link>
+            )}
 
-      <Box>
-        {status === "authenticated" && (
-          <Link href="/api/auth/signout"> Log Out</Link>
-        )}
-
-        {status === "unauthenticated" && (
-          <Link href="/api/auth/signin"> Login</Link>
-        )}
-      </Box>
+            {status === "unauthenticated" && (
+              <Link href="/api/auth/signin"> Login</Link>
+            )}
+          </Box>
+        </Flex>
+      </Container>
     </nav>
   );
 };
