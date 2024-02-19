@@ -14,9 +14,12 @@ const IssueForm = dynamic(() => import("@/app/issues/_components/IssueForm"), {
 });
 
 const EditIssuePage = async ({ params }: Props) => {
+  console.log("asdasdas");
+
   const bug = await prisma.bug.findUnique({
     where: { id: parseInt(params.id) },
   });
+
   if (!bug) notFound();
   return <IssueForm bug={bug} />;
 };
