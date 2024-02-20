@@ -22,10 +22,17 @@ const IssuesPage = async ({
     ? searchParams.status
     : undefined;
 
+  const orderBy = columns
+    .map((column) => column.value)
+    .includes(searchParams.orderBy)
+    ? { [searchParams.orderBy]: "asc" }
+    : undefined;
+
   const bugs = await prisma.bug.findMany({
     where: {
       status,
     },
+    orderBy,
   });
 
   return (
