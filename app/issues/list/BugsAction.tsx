@@ -9,7 +9,7 @@ const BugsAction = () => {
   return (
     <Flex justify="between">
       <IssueStatusFilter />
-      <Link href="issues/new">
+      <Link href="/issues/new">
         <Button>create new</Button>
       </Link>
     </Flex>

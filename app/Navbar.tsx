@@ -62,6 +62,8 @@ const NavLinks = () => {
 
 const AuthStatus = () => {
   const { status, data: session } = useSession();
+
+  console.log("session----------------------->", session);
   if (status === "loading") return <Skeleton width="3rem" />;
   if (status === "unauthenticated")
     return (
@@ -95,4 +97,5 @@ const AuthStatus = () => {
     </Box>
   );
 };
+
 export default Navbar;
