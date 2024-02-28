@@ -18,7 +18,7 @@ enum Status {
 
 model Account {
   userId            String
-  type              String
+  type_             String
   provider          String
   providerAccountId String
   refresh_token     String? @db.Text
