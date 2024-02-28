@@ -42,7 +42,7 @@ model Bug {
   status           Status   @default(OPEN)
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
-  assignedToUserId String?  @db.VarChar(255)
+  assignedToUserId String?  @db.VarChar(191)
   assignedToUser   User?    @relation(fields: [assignedToUserId], references: [id])
 }
 
