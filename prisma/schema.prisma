@@ -18,7 +18,7 @@ enum Status {
 
 model Account {
   userId            String
-  typeasd           String
+  type              String
   provider          String
   providerAccountId String
   refresh_token     String? @db.Text
@@ -39,7 +39,7 @@ model Bug {
   id               Int      @id @default(autoincrement())
   title            String
   description      String   @db.Text
-  statuis          Status   @default(OPEN)
+  status           Status   @default(OPEN)
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
   assignedToUserId String?  @db.VarChar(191)

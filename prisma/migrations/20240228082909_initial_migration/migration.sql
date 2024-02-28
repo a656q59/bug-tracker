@@ -1,7 +1,7 @@
 -- CreateTable
 CREATE TABLE `Account` (
     `userId` VARCHAR(191) NOT NULL,
-    `typeasd` VARCHAR(191) NOT NULL,
+    `type` VARCHAR(191) NOT NULL,
     `provider` VARCHAR(191) NOT NULL,
     `providerAccountId` VARCHAR(191) NOT NULL,
     `refresh_token` TEXT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE `Bug` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `title` VARCHAR(191) NOT NULL,
     `description` TEXT NOT NULL,
-    `statuis` ENUM('OPEN', 'IN_PROGRESS', 'CLOSED') NOT NULL DEFAULT 'OPEN',
+    `status` ENUM('OPEN', 'IN_PROGRESS', 'CLOSED') NOT NULL DEFAULT 'OPEN',
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
     `assignedToUserId` VARCHAR(191) NULL,
