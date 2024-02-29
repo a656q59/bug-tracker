@@ -58,7 +58,7 @@ model User {
   id            String    @id @default(cuid())
   name          String?
   email         String?   @unique
-  emailVerified DateTime?
+  emailVerified DateTime? @db.DateTime
   image         String?
   accounts      Account[]
   sessions      Session[]
@@ -68,7 +68,7 @@ model User {
 model VerificationToken {
   identifier String
   token      String   @unique
-  expires    DateTime
+  expires    DateTime @db.DateTime
 
   @@unique([identifier, token])
 }

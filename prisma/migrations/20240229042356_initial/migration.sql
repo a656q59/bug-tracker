@@ -46,7 +46,7 @@ CREATE TABLE `User` (
     `id` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NULL,
     `email` VARCHAR(191) NULL,
-    `emailVerified` DATETIME(3) NULL,
+    `emailVerified` DATETIME NULL,
     `image` VARCHAR(191) NULL,
 
     UNIQUE INDEX `User_email_key`(`email`),
@@ -57,7 +57,7 @@ CREATE TABLE `User` (
 CREATE TABLE `VerificationToken` (
     `identifier` VARCHAR(191) NOT NULL,
     `token` VARCHAR(191) NOT NULL,
-    `expires` DATETIME(3) NOT NULL,
+    `expires` DATETIME NOT NULL,
 
     UNIQUE INDEX `VerificationToken_token_key`(`token`),
     UNIQUE INDEX `VerificationToken_identifier_token_key`(`identifier`, `token`)
