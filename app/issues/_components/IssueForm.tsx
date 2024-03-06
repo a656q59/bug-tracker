@@ -10,7 +10,6 @@ import {
 } from "@radix-ui/themes";
 import axios from "axios";
 import { Controller, useForm } from "react-hook-form";
-import dynamic from "next/dynamic";
 import "easymde/dist/easymde.min.css";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -48,9 +47,8 @@ const IssueForm = ({ bug }: Props) => {
       setSubmitting(true);
       if (bug) {
         await axios.patch("/api/issues/" + bug.id, data);
-        // console.log("bug" + bug + "data" + data);
       } else await axios.post("/api/issues", data);
-      router.push("/issues");
+      router.push("/issues/list");
       router.refresh();
     } catch (error) {
       setSubmitting(false);
