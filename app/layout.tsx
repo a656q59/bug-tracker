@@ -1,6 +1,6 @@
+import "./theme-config.css";
 import "@radix-ui/themes/styles.css";
 
-import "./theme-config.css";
 import "./globals.css";
 
 import type { Metadata } from "next";

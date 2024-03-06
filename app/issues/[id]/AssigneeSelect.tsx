@@ -28,7 +28,7 @@ const AssigneeSelect = ({ bug }: { bug: Bug }) => {
         defaultValue={bug.assignedToUserId || ""}
         onValueChange={assignIssue}
       >
-        <Select.Trigger placeholder="Assign..." />
+        <Select.Trigger radius="large" />
         <Select.Content>
           <Select.Group>
             <Select.Label>Suggestions</Select.Label>
