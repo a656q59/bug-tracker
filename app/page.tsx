@@ -7,6 +7,8 @@ import IssueChart from "./IssueChart";
 import { Flex, Grid } from "@radix-ui/themes";
 import { Metadata } from "next";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   const open = await prisma.bug.count({ where: { status: "OPEN" } });
   const inProgress = await prisma.bug.count({

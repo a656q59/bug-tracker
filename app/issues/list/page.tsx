@@ -27,7 +27,7 @@ const IssuesPage = async ({ searchParams }: { searchParams: IssueQuery }) => {
   });
 
   const issueCount = await prisma.bug.count({ where });
-
+  console.log("issueCount---------->", issueCount);
   return (
     <Flex direction="column" gap="4">
       <BugsAction />
