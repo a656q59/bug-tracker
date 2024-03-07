@@ -13,6 +13,7 @@ const AssigneeSelect = ({ bug }: { bug: Bug }) => {
   if (error) return null;
 
   const assignIssue = (userId: string) => {
+    console.log(userId);
     axios
       .patch(`/api/issues/` + bug.id, {
         assignedToUserId: userId === "unassigned" ? null : userId,

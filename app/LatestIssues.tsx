@@ -12,6 +12,7 @@ const LatestIssues = async () => {
       assignedToUser: true,
     },
   });
+
   return (
     <Card>
       <Heading size="4" mb="3">
@@ -27,6 +28,7 @@ const LatestIssues = async () => {
                     <Link href={`/issues/${issue.id}`}>{issue.title}</Link>
                     <BugStatusBadge status={issue.status} />
                   </Flex>
+
                   {issue.assignedToUser && (
                     <Avatar
                       src={issue.assignedToUser.image!}
