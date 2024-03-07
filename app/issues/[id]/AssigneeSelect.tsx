@@ -26,7 +26,9 @@ const AssigneeSelect = ({ bug }: { bug: Bug }) => {
     <>
       <Select.Root
         defaultValue={bug.assignedToUserId || "unassigned"}
-        onValueChange={assignIssue}
+        onValueChange={(e) => {
+          assignIssue(e);
+        }}
       >
         <Select.Trigger />
         <Select.Content>
